@@ -10,7 +10,7 @@ public class search implements Serializable {
     private String genre;
     private int quantinty;
     
-    publlic search(String barcode , String name , String author, String genre,double price , int quantity){
+    public search(String barcode , String name , String author, String genre,double price , int quantity){
         this.barcode = barcode;
         this.name = name ;
         this.author = author;
