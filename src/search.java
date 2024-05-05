@@ -16,6 +16,7 @@ public class search implements Serializable {
         this.author = author;
         this.setPrice(price);
        this.genre = genre;
+    return null;
     } 
     
     public search (){
