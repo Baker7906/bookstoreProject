@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -84,6 +86,7 @@ public class BookstoreManagementSystem {
 
         // Method to add sample books
         private void addSampleBooks() {
+            books.add(new Book("978-1234567890", "Comparative Basic Practices for C and Java", "Yakup \u00C7elikbilek", 39.99, 25));
             books.add(new Book("978-0132350884", "Clean Code", "Robert C. Martin", 29.99, 50));
             books.add(new Book("978-0134685991", "Effective Java", "Joshua Bloch", 45.00, 30));
             books.add(new Book("978-0321356680", "Design Patterns", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides", 42.99, 20));
@@ -118,8 +121,7 @@ public class BookstoreManagementSystem {
                 System.out.println("6. Exit");
                 System.out.print("Enter your choice: ");
 
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                int choice = getValidInt();
 
                 switch (choice) {
                     case 1:
@@ -154,10 +156,9 @@ public class BookstoreManagementSystem {
             System.out.print("Enter Author: ");
             String author = scanner.nextLine();
             System.out.print("Enter Price: ");
-            double price = scanner.nextDouble();
+            double price = getValidDouble();
             System.out.print("Enter Stock Quantity: ");
-            int stockQuantity = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int stockQuantity = getValidInt();
 
             Book book = new Book(isbn, title, author, price, stockQuantity);
             manager.addBook(book);
@@ -197,10 +198,9 @@ public class BookstoreManagementSystem {
             System.out.print("Enter new Author (leave blank to keep current): ");
             String author = scanner.nextLine();
             System.out.print("Enter new Price (enter -1 to keep current): ");
-            double price = scanner.nextDouble();
+            double price = getValidDouble();
             System.out.print("Enter new Stock Quantity (enter -1 to keep current): ");
-            int stockQuantity = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int stockQuantity = getValidInt();
 
             if (!title.isEmpty()) existingBook.setTitle(title);
             if (!author.isEmpty()) existingBook.setAuthor(author);
@@ -217,10 +217,35 @@ public class BookstoreManagementSystem {
             manager.deleteBook(isbn);
             System.out.println("Book deleted successfully.");
         }
+
+        private int getValidInt() {
+            while (true) {
+                try {
+                    int value = Integer.parseInt(scanner.nextLine());
+                    if (value < 0) throw new NumberFormatException();
+                    return value;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a non-negative integer.");
+                }
+            }
+        }
+
+        private double getValidDouble() {
+            while (true) {
+                try {
+                    double value = Double.parseDouble(scanner.nextLine());
+                    if (value < 0) throw new NumberFormatException();
+                    return value;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a non-negative number.");
+                }
+            }
+        }
     }
 
-    // Main method to run the application
+    
     public static void main(String[] args) {
         new BookstoreUI().start();
     }
 }
+
