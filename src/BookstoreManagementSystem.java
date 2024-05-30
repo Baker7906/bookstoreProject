@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class BookstoreManagementSystem {
 
-    // Book class
     public static class Book {
         private String isbn;
         private String title;
@@ -22,7 +21,6 @@ public class BookstoreManagementSystem {
             this.stockQuantity = stockQuantity;
         }
 
-        // Getters and setters
         public String getIsbn() { return isbn; }
         public void setIsbn(String isbn) { this.isbn = isbn; }
 
@@ -45,7 +43,6 @@ public class BookstoreManagementSystem {
         }
     }
 
-    // BookstoreManager class
     public static class BookstoreManager {
         private List<Book> books;
 
@@ -84,7 +81,6 @@ public class BookstoreManagementSystem {
             books.removeIf(book -> book.getIsbn().equals(isbn));
         }
 
-        // Method to add sample books
         private void addSampleBooks() {
             books.add(new Book("978-1234567890", "Comparative Basic Practices for C and Java", "Yakup \u00C7elikbilek", 39.99, 25));
             books.add(new Book("978-0132350884", "Clean Code", "Robert C. Martin", 29.99, 50));
@@ -100,7 +96,6 @@ public class BookstoreManagementSystem {
         }
     }
 
-    // BookstoreUI class
     public static class BookstoreUI {
         private Scanner scanner;
         private BookstoreManager manager;
